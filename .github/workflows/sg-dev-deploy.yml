@@ -12,6 +12,8 @@ jobs:
       aws_region: ap-southeast-1
       aws_role_arn: ${{ vars.SG_DEV_AWS_ROLE_ARN}}
       ecr_url: ${{ vars.SG_DEV_ECR_URL}}
+    secrets:
+      npm_package_read_token: ${{ secrets.PRIVATE_NPM_PACKAGE_READ_TOKEN }}
 name: Push To sg-dev ECR
 permissions:
   id-token: write
