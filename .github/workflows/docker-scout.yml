@@ -1,0 +1,19 @@
+on:
+  pull_request:
+    branches:
+      - development
+      - main
+      - master
+  push:
+    tags:
+      - run-tests-*
+jobs:
+  docker_scout:
+    if: startsWith(github.head_ref, 'pulumi-github-actions') == false
+    name: Docker Scout Check
+    uses: NurseBuddy/shared-github-workflows/.github/workflows/docker-scout.yml@main
+    with:
+      docker_user: ${{ vars.DOCKER_USER}}
+    secrets:
+      npm_package_read_token: ${{ secrets.NPM_PACKAGE_READ_TOKEN }}
+      docker_pat: ${{ secrets.DOCKER_PAT }}
