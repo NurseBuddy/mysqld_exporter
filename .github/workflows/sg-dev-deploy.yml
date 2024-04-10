@@ -5,6 +5,8 @@ on:
       - sg-all-*
       - dev-all-*
       - all-*
+    branches:
+      - development
 jobs:
   push_to_sg_dev:
     uses: NurseBuddy/shared-github-workflows/.github/workflows/push-to-ecr.yml@main
@@ -12,6 +14,8 @@ jobs:
       aws_region: ap-southeast-1
       aws_role_arn: ${{ vars.SG_DEV_AWS_ROLE_ARN}}
       ecr_url: ${{ vars.SG_DEV_ECR_URL}}
+      ecs_service: ${{ vars.SG_DEV_ECS_SERVICE}}
+      ecs_cluster: ${{ vars.SG_DEV_ECS_CLUSTER}}
 name: Push To sg-dev ECR
 permissions:
   id-token: write
